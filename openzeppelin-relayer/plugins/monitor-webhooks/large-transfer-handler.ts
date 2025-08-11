@@ -6,6 +6,10 @@ const PAUSE_SELECTOR = "0x8456cb59"; // pause()
 type LargeTransferParams = {
     title?: string;
     body?: string;
+    action?: string;
+    alert_level?: string;
+    amount?: string;
+    timestamp?: string;
     event?: {
         from: string;
         to: string;
@@ -20,11 +24,13 @@ type LargeTransferParams = {
 export async function handler(api: PluginAPI, params: LargeTransferParams): Promise<any> {
     console.log("[LARGE-TRANSFER] Suspicious activity detected:", params);
     
-    const amount = params.event?.amount || "unknown";
-    const to = params.event?.to || "unknown";
+    const amount = params.amount || params.event?.amount || "unknown";
+    const to = params.event?.to || "unknown address";
+    const alertLevel = params.alert_level || "CRITICAL";
     
-    console.log(`🚨 Large transfer detected: ${amount} tokens to ${to}`);
-    console.log("⏸️ Pausing contract to prevent additional transfers...");
+    console.log(`[LARGE-TRANSFER] 🚨 ${alertLevel}: Large transfer of ${amount} tokens detected`);
+    console.log("[LARGE-TRANSFER] ⏸️ Initiating emergency pause in <500ms...");
+    console.log("[LARGE-TRANSFER] 📧 Alerting compliance team immediately");
     
     try {
         // Use the configured relayer for Sepolia
