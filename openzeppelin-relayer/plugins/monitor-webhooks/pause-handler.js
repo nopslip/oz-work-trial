@@ -20,10 +20,9 @@ const UNPAUSE_SELECTOR = "0x3f4ba83a"; // unpause()
 function handler(api, params) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log("[PAUSE-HANDLER] Received webhook from Monitor - raw params:", JSON.stringify(params));
-        // The Relayer requires params field, so we get whatever the Monitor sent
-        // The Monitor sends: { title: "...", body: "..." }
-        // But the Relayer API wraps it, so we receive: params = { title: "...", body: "..." }
-        const webhookData = params;
+        // The Monitor sends the webhook with 'message' field, but Relayer wraps it in 'params'
+        // So we receive: params = { message: { title: "...", body: "..." } } or just the message directly
+        const webhookData = (params === null || params === void 0 ? void 0 : params.message) || params;
         console.log("[PAUSE-HANDLER] Extracted webhook data:", JSON.stringify(webhookData));
         try {
             // Use the configured relayer for Sepolia
