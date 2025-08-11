@@ -1,10 +1,15 @@
 # Acme Bank Crypto Bond - Smart Contract Specification
 
-## Contract Type: ERC20 Token (Standard)
+## Contract Type: ERC20 Token (RWA/Stablecoin variant)
 
-We'll use OpenZeppelin's standard ERC20 generator to create a clean, upgradeable token for our bond demonstration.
+Upgradeable ERC20 token with enterprise features for tokenized bond demonstration using OpenZeppelin's standards.
 
-## Core Parameters for MCP Generation
+## Implementation Status: ✅ DEPLOYED
+
+**Contract Address**: `0xE8bc7ff409dD6DceA77b3A948AF2c6a18E97327f` (Sepolia)
+**Contract File**: `/tokenized-bond/src/AcmeBankCryptoBond.sol`
+
+## Core Parameters (As Implemented)
 
 ```javascript
 {
@@ -17,9 +22,6 @@ We'll use OpenZeppelin's standard ERC20 generator to create a clean, upgradeable
   
   // Upgradeability
   "upgradeable": "uups",  // Lower gas costs, upgrade logic in implementation
-  
-  // No compliance features needed for demo
-  // Work trial doesn't require KYC/AML
   
   // Token Features
   "mintable": true,  // For bond issuance
@@ -42,14 +44,17 @@ We'll use OpenZeppelin's standard ERC20 generator to create a clean, upgradeable
 }
 ```
 
-## Roles to Configure Post-Deployment
+## Implemented Roles
 
-The token with `access: "roles"` will generate these standard roles that we'll assign:
+Standard OpenZeppelin roles plus custom bond operation roles:
 
 1. **DEFAULT_ADMIN_ROLE** → Acme Bank Executive Committee (multisig)
 2. **PAUSER_ROLE** → Emergency response team + Monitor/Relayer
 3. **MINTER_ROLE** → Bond issuance authority
-4. **BURNER_ROLE** → Redemption authority
+4. **UPGRADER_ROLE** → Contract upgrade authority
+5. **INTEREST_PAYER_ROLE** → Automated interest distribution (Relayer)
+6. **CRYPTO_TRADER_ROLE** → Crypto purchase execution
+7. **TREASURER_ROLE** → Fund allocation management
 
 ## Custom Additions After Generation
 

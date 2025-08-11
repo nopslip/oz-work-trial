@@ -45,8 +45,13 @@ export async function handler(api: PluginAPI, params: KeyCompromiseParams): Prom
             
             // Encode emergency pause with reason
             const reason = "SECURITY: Unauthorized upgrade - possible key compromise";
-            const encodedReason = api.encodeString(reason);
-            const data = EMERGENCY_PAUSE_SELECTOR + encodedReason.slice(2);
+            // Convert string to hex manually
+            const hexReason = Buffer.from(reason).toString('hex');
+            // ABI encode: offset (32 bytes) + length (32 bytes) + data (padded to 32 bytes)
+            const offset = "0000000000000000000000000000000000000000000000000000000000000020";
+            const length = (reason.length).toString(16).padStart(64, '0');
+            const paddedHex = hexReason.padEnd(Math.ceil(hexReason.length / 64) * 64, '0');
+            const data = EMERGENCY_PAUSE_SELECTOR + offset + length + paddedHex;
             
             const result = await relayer.sendTransaction({
                 to: CONTRACT_ADDRESS,
