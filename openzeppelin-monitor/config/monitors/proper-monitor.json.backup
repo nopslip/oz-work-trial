@@ -1,0 +1,54 @@
+{
+  "name": "Proper Bond Monitor",
+  "paused": false,
+  "networks": ["ethereum_sepolia"],
+  "addresses": [
+    {
+      "address": "0xb9a538e720f7c05a7a4747a484c231c956920bef",
+      "contract_spec": [
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Paused",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Unpaused",
+          "type": "event"
+        }
+      ]
+    }
+  ],
+  "match_conditions": {
+    "functions": [],
+    "events": [
+      {
+        "signature": "Paused(address)",
+        "expression": null
+      },
+      {
+        "signature": "Unpaused(address)",
+        "expression": null
+      }
+    ],
+    "transactions": []
+  },
+  "trigger_conditions": [],
+  "triggers": ["emergency_pause_webhook"]
+}

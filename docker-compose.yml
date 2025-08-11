@@ -1,0 +1,4 @@
+# This docker-compose.yml can be used to run OpenZeppelin Monitor and Relayer
+# Use the respective docker-compose.yaml files in each project directory instead:
+# - openzeppelin-monitor/docker-compose.yaml
+# - openzeppelin-relayer/docker-compose.yaml

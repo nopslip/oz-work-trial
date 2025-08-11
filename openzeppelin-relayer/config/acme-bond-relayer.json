@@ -1,0 +1,219 @@
+{
+  "name": "AcmeBankBondRelayer",
+  "version": "1.0.0",
+  "description": "Automated relayer for Acme Bank Crypto Bond operations",
+  
+  "networks": {
+    "ethereum-sepolia": {
+      "chainId": 11155111,
+      "rpcUrl": "${SEPOLIA_RPC_URL}",
+      "confirmations": 2,
+      "gasPrice": "auto",
+      "gasLimit": {
+        "default": 500000,
+        "distributeInterest": 2000000
+      },
+      "contracts": {
+        "AcmeBankCryptoBond": {
+          "address": "0xB9A538E720f7C05a7A4747A484C231c956920bEf",
+          "abi": "../../../tokenized-bond/out/AcmeBankCryptoBond.sol/AcmeBankCryptoBond.abi.json"
+        }
+      }
+    }
+  },
+  
+  "signers": {
+    "interest-payer": {
+      "type": "private-key",
+      "privateKeyEnv": "PRIVATE_KEY",
+      "address": "0xF2431c13e4240385215afA90230bbd98a98c2c4e",
+      "description": "Has INTEREST_PAYER_ROLE - demo uses same key for all"
+    },
+    "pauser": {
+      "type": "private-key",
+      "privateKeyEnv": "PRIVATE_KEY",
+      "address": "0xF2431c13e4240385215afA90230bbd98a98c2c4e",
+      "description": "Has PAUSER_ROLE - demo uses same key for all"
+    },
+    "treasurer": {
+      "type": "private-key",
+      "privateKeyEnv": "PRIVATE_KEY",
+      "address": "0xF2431c13e4240385215afA90230bbd98a98c2c4e",
+      "description": "Has TREASURER_ROLE - demo uses same key for all"
+    }
+  },
+  
+  "webhooks": {
+    "enabled": true,
+    "port": 8080,
+    "host": "0.0.0.0",
+    "authSecret": "${WEBHOOK_SECRET}",
+    "endpoints": [
+      {
+        "path": "/trigger-interest",
+        "method": "POST",
+        "description": "Trigger monthly interest distribution",
+        "action": {
+          "type": "transaction",
+          "network": "ethereum-sepolia",
+          "contract": "AcmeBankCryptoBond",
+          "function": "distributeInterest",
+          "signer": "interest-payer",
+          "args": [],
+          "validation": {
+            "checkRole": "INTEREST_PAYER_ROLE",
+            "checkPaused": false
+          }
+        }
+      },
+      {
+        "path": "/emergency-pause",
+        "method": "POST",
+        "description": "Emergency pause the contract",
+        "action": {
+          "type": "transaction",
+          "network": "ethereum-sepolia",
+          "contract": "AcmeBankCryptoBond",
+          "function": "emergencyPause",
+          "signer": "pauser",
+          "args": ["${reason}"],
+          "validation": {
+            "checkRole": "PAUSER_ROLE"
+          }
+        }
+      },
+      {
+        "path": "/unpause",
+        "method": "POST",
+        "description": "Unpause the contract",
+        "action": {
+          "type": "transaction",
+          "network": "ethereum-sepolia",
+          "contract": "AcmeBankCryptoBond",
+          "function": "unpause",
+          "signer": "pauser",
+          "args": [],
+          "validation": {
+            "checkRole": "PAUSER_ROLE",
+            "checkPaused": true
+          }
+        }
+      },
+      {
+        "path": "/allocate-funds",
+        "method": "POST",
+        "description": "Allocate funds between pools",
+        "action": {
+          "type": "transaction",
+          "network": "ethereum-sepolia",
+          "contract": "AcmeBankCryptoBond",
+          "function": "allocateFunds",
+          "signer": "treasurer",
+          "args": ["${toCrypto}", "${toInterest}", "${toOperational}"],
+          "validation": {
+            "checkRole": "TREASURER_ROLE",
+            "checkPaused": false
+          }
+        }
+      },
+      {
+        "path": "/record-crypto-purchase",
+        "method": "POST",
+        "description": "Record a crypto purchase",
+        "action": {
+          "type": "transaction",
+          "network": "ethereum-sepolia",
+          "contract": "AcmeBankCryptoBond",
+          "function": "recordCryptoPurchase",
+          "signer": "treasurer",
+          "args": ["${asset}", "${amount}", "${pricePerUnit}"],
+          "validation": {
+            "checkRole": "CRYPTO_TRADER_ROLE",
+            "checkPaused": false,
+            "checkDailyLimit": true
+          }
+        }
+      },
+      {
+        "path": "/large-transfer-alert",
+        "method": "POST",
+        "description": "Alert on large transfer (monitoring only)",
+        "action": {
+          "type": "alert",
+          "severity": "HIGH",
+          "notify": ["ops-team@acmebank.com"],
+          "log": true
+        }
+      },
+      {
+        "path": "/compliance-violation",
+        "method": "POST",
+        "description": "Handle compliance violation",
+        "action": {
+          "type": "multi",
+          "steps": [
+            {
+              "type": "transaction",
+              "network": "ethereum-sepolia",
+              "contract": "AcmeBankCryptoBond",
+              "function": "emergencyPause",
+              "signer": "pauser",
+              "args": ["Compliance violation detected"]
+            },
+            {
+              "type": "alert",
+              "severity": "CRITICAL",
+              "notify": ["compliance@acmebank.com", "legal@acmebank.com"]
+            }
+          ]
+        }
+      },
+      {
+        "path": "/health",
+        "method": "GET",
+        "description": "Health check endpoint",
+        "action": {
+          "type": "response",
+          "status": 200,
+          "body": {
+            "status": "healthy",
+            "network": "ethereum-sepolia",
+            "contract": "0xB9A538E720f7C05a7A4747A484C231c956920bEf"
+          }
+        }
+      }
+    ]
+  },
+  
+  "monitoring": {
+    "enabled": true,
+    "metricsPort": 9090,
+    "logLevel": "INFO",
+    "errorReporting": {
+      "enabled": true,
+      "webhook": "${ERROR_WEBHOOK_URL}"
+    }
+  },
+  
+  "security": {
+    "rateLimiting": {
+      "enabled": true,
+      "requestsPerMinute": 100
+    },
+    "ipWhitelist": {
+      "enabled": false,
+      "addresses": []
+    },
+    "cors": {
+      "enabled": true,
+      "origins": ["http://localhost:3000"]
+    }
+  },
+  
+  "retry": {
+    "maxAttempts": 3,
+    "backoffMultiplier": 2,
+    "initialDelay": 1000,
+    "maxDelay": 30000
+  }
+}

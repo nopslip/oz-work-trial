@@ -1,0 +1,8 @@
+{
+  "name": "monitor-webhook-plugins",
+  "version": "1.0.0",
+  "description": "Plugins to handle Monitor webhooks and execute contract transactions",
+  "dependencies": {
+    "@openzeppelin/relayer-sdk": "^1.0.0"
+  }
+}

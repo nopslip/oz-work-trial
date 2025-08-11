@@ -1,0 +1,69 @@
+{
+  "name": "Acme Bank Crypto Bond Monitor",
+  "paused": false,
+  "networks": ["ethereum_sepolia"],
+  "addresses": [
+    {
+      "address": "0xb9a538e720f7c05a7a4747a484c231c956920bef",
+      "contract_spec": []
+    }
+  ],
+  "match_conditions": {
+    "functions": [],
+    "events": [
+      {
+        "signature": "InterestPaymentDue(uint256,uint256,uint256)",
+        "expression": null
+      },
+      {
+        "signature": "LargeTransfer(address,address,uint256)",
+        "expression": "value > 100000000000000000000000"
+      },
+      {
+        "signature": "EmergencyPause(string,address)",
+        "expression": null
+      },
+      {
+        "signature": "Paused(address)",
+        "expression": null
+      },
+      {
+        "signature": "Unpaused(address)",
+        "expression": null
+      },
+      {
+        "signature": "ComplianceViolation(address,string)",
+        "expression": null
+      },
+      {
+        "signature": "InterestPaid(uint256,uint256)",
+        "expression": null
+      },
+      {
+        "signature": "ConcentrationRisk(address,uint256)",
+        "expression": null
+      },
+      {
+        "signature": "CryptoPurchaseRequested(string,uint256,uint256)",
+        "expression": null
+      },
+      {
+        "signature": "FundsAllocated(uint256,uint256,uint256)",
+        "expression": null
+      }
+    ],
+    "transactions": [
+      {
+        "status": "Success",
+        "expression": null
+      }
+    ]
+  },
+  "trigger_conditions": [],
+  "triggers": [
+    "interest_payment_webhook",
+    "emergency_pause_webhook",
+    "large_transfer_webhook",
+    "compliance_violation_webhook"
+  ]
+}
