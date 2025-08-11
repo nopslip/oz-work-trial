@@ -19,11 +19,12 @@ const UNPAUSE_SELECTOR = "0x3f4ba83a"; // unpause()
  */
 function handler(api, params) {
     return __awaiter(this, void 0, void 0, function* () {
-        var _a, _b;
-        // Handle both direct params and nested message format
-        const title = params.title || ((_a = params.message) === null || _a === void 0 ? void 0 : _a.title) || "Pause Event";
-        const body = params.body || ((_b = params.message) === null || _b === void 0 ? void 0 : _b.body) || "Contract paused";
-        console.log("[PAUSE-HANDLER] Received webhook from Monitor:", { title, body, rawParams: params });
+        console.log("[PAUSE-HANDLER] Received webhook from Monitor - raw params:", JSON.stringify(params));
+        // The Relayer requires params field, so we get whatever the Monitor sent
+        // The Monitor sends: { title: "...", body: "..." }
+        // But the Relayer API wraps it, so we receive: params = { title: "...", body: "..." }
+        const webhookData = params;
+        console.log("[PAUSE-HANDLER] Extracted webhook data:", JSON.stringify(webhookData));
         try {
             // Use the configured relayer for Sepolia
             const relayer = api.useRelayer("acme-bond-sepolia");
@@ -37,15 +38,13 @@ function handler(api, params) {
                 speed: relayer_sdk_1.Speed.FAST,
             });
             console.log("[PAUSE-HANDLER] Transaction submitted:", result.id);
-            // Wait for confirmation (optional - remove for faster response)
-            const receipt = yield result.wait();
-            console.log("[PAUSE-HANDLER] Transaction confirmed:", receipt);
             return {
                 success: true,
                 action: "unpause",
                 transactionId: result.id,
                 message: `Successfully sent unpause() transaction in response to pause event`,
-                contractAddress: CONTRACT_ADDRESS
+                contractAddress: CONTRACT_ADDRESS,
+                webhookReceived: webhookData
             };
         }
         catch (error) {
@@ -54,7 +53,8 @@ function handler(api, params) {
                 success: false,
                 action: "unpause",
                 error: (error === null || error === void 0 ? void 0 : error.message) || String(error),
-                message: "Failed to send unpause transaction"
+                message: "Failed to send unpause transaction",
+                webhookReceived: webhookData
             };
         }
     });

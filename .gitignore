@@ -1,9 +1,9 @@
 # Private documentation (internal use only)
-private-docs/
+# private-docs/
 CLAUDE.md
 
 # Documentation 
-docs/
+# docs/
 
 # Environment files
 .env
