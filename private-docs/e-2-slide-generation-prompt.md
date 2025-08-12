@@ -1,6 +1,6 @@
 # Presentation Slides for Exercise 2
 
-**Context**: Presenting TO the same financial institution how OpenZeppelin's comprehensive security stack will protect their tokenized Money Market Fund, with special focus on oracle selection and manipulation prevention.
+**Context**: I am an OpenZeppelin Solutions Architect presenting TO AcmeBank executives how OpenZeppelin's comprehensive security stack will protect their tokenized Money Market Fund, with special focus on oracle selection and manipulation prevention.
 
 ## 1. Title Slide
 Securing Your Tokenized Money Market Fund
@@ -9,8 +9,8 @@ Powered by OpenZeppelin's Battle-Tested Solutions
 
 Include: OpenZeppelin logo, financial institution placeholder logo
 
-## 2. The Oracle Selection Challenge
-Your Current Struggle: Which Oracle Can You Trust?
+## 2. AcmeBank's Oracle Selection Concerns
+Your Current Situation: Which Oracle Can You Trust?
 
 • **Single Oracle = Single Point of Failure** - Mango Markets lost $100M+ to manipulation
 • **Wrong Price = Wrong NAV = SEC Violation** - Regulatory disaster waiting to happen  
@@ -29,7 +29,7 @@ What Happens Without Proper Oracle Security
 
 **The Pattern**: Single oracle dependency = catastrophic vulnerability
 
-## 4. Our Solution: Multi-Oracle Defense
+## 4. OpenZeppelin's Solution for AcmeBank: Multi-Oracle Defense
 Learned from Compound Wargame Success
 
 **Three-Layer Protection**:
@@ -48,7 +48,7 @@ Compound Wargame Simulation - July 2024
 • **Action Taken**: Market paused before exploitation
 • **Result**: $0 lost vs potential $700K drain
 
-**Your MMF Gets This Same Protection**
+**AcmeBank's MMF Will Get This Same Protection**
 
 ## 6. Complete MMF Security Architecture
 Beyond Oracles - Full Stack Protection
@@ -173,8 +173,8 @@ Proven Oracle Security Expertise
 • **Industry Standard** - 80% of DeFi uses our libraries
 • **Battle-Tested Monitoring** - Same tools that caught the WETH manipulation
 
-## 14. Your Protection Guarantee
-What You Get with OpenZeppelin
+## 14. AcmeBank's Protection Guarantee
+What AcmeBank Gets with OpenZeppelin
 
 ✅ **Multi-Oracle Architecture** - No single point of failure
 ✅ **15% Deviation Detection** - Proven threshold from real simulations  
@@ -185,7 +185,7 @@ What You Get with OpenZeppelin
 ✅ **Zero Day Vulnerability Protection** - Behavioral detection
 
 ## 15. Next Steps
-Launch Your Secure MMF
+Launch AcmeBank's Secure MMF
 
 **Immediate Actions**:
 • Oracle Architecture Workshop
@@ -195,7 +195,7 @@ Launch Your Secure MMF
 
 **Contact**: OpenZeppelin Solutions Team
 
-**The Question**: Can you afford NOT to have this protection when managing billions in MMF assets?
+**The Question**: Can AcmeBank afford NOT to have this protection when managing billions in MMF assets?
 
 **Presentation Duration**: 10-15 minutes
 **Style**: Data-driven, case-study focused, emphasizing real prevention success
