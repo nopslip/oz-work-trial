@@ -29,23 +29,11 @@
 
 2. **The Solution**: Monitor acts as the cron job that blockchains lack. It watches for time conditions and triggers the Relayer, which then executes the interest distribution.
 
-3. **The Business Value**: Institutional investors expect passive income. They shouldn't need to claim interest manually. This automation eliminates operational overhead and ensures timely payments."
+3. **The Business Value**: Institutional investors expect passive income. They shouldn't need to claim interest manually. This automation eliminates operational overhead and ensures timely payments.
 
-**The Killer Line**: "Without Monitor and Relayer, you'd need a human clicking buttons every month. With them, it's fully automated."
+4. **Compliance Benefit**: Push payments enable our OFAC monitoring use case - we can screen recipients before sending funds, rather than having sanctioned entities claim interest."
 
-### 3. Why Standard ERC20 (Not RWA)?
-
-**The Question**: "Why did you use standard ERC20 instead of specialized token types?"
-
-**Your Answer**:
-"I chose standard ERC20 with upgradeable extensions for simplicity and compatibility:
-
-1. **Universal Standard**: Every wallet, exchange, and tool supports ERC20
-2. **Clean Implementation**: No experimental features or community contracts
-3. **Upgradeable**: UUPS pattern allows future enhancements
-4. **Enterprise Features**: Added roles, pausability through standard OpenZeppelin extensions
-
-The work trial focuses on Monitor/Relayer value, not complex token mechanics. Standard ERC20 keeps the focus on operational automation."
+**The Killer Line**: "Without Monitor and Relayer, you'd need a human clicking buttons every month. With them, it's fully automated AND compliant."
 
 ### 4. Why Roles Instead of Ownable?
 

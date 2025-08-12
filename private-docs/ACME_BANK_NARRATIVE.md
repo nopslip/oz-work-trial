@@ -318,11 +318,11 @@ export async function generateRegulatoryReport(api: PluginAPI, params: ReportPar
 3. Funds automatically allocated to crypto purchase pool
 4. Dashboard updates with available capital
 
-#### Phase 3: Crypto Purchase Execution (3 minutes)
-1. Treasurer requests BTC purchase
-2. Monitor detects CryptoPurchaseRequested event
+#### Phase 3: Investment Allocation (3 minutes)
+1. Treasurer allocates funds to ETH-based investments
+2. Monitor detects allocation events
 3. Relayer validates allocation limits and market conditions
-4. Executes purchase through DEX aggregator
+4. Executes approved allocations
 5. Updates allocation tracking
 
 #### Phase 4: Interest Payment with Crypto Performance (3 minutes)
@@ -339,15 +339,15 @@ export async function generateRegulatoryReport(api: PluginAPI, params: ReportPar
 4. Risk team notified via webhook
 
 #### Phase 6: Emergency Response (2 minutes)
-1. Simulate crypto market crash (-30% BTC)
+1. Simulate market volatility (-30% ETH)
 2. Monitor triggers emergency response
 3. Bond trading paused
-4. Pending crypto purchases halted
+4. Pending transactions halted
 5. Stakeholders notified with market analysis
 
 ### Technical Architecture Highlights
 
-1. **Multi-Oracle Integration**: Chainlink for crypto prices, Band for forex rates
+1. **Multi-Oracle Integration**: Chainlink for ETH/USD prices and on-chain data feeds
 2. **Cross-Protocol Connectivity**: Integrates with Uniswap, Aave, Compound
 3. **Machine Learning Filters**: Python scripts for anomaly detection
 4. **Webhook Ecosystem**: Slack, email, SMS, and custom API integrations
