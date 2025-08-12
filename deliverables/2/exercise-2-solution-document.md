@@ -23,24 +23,40 @@ Your institution faces a critical decision: which oracle provider(s) can be trus
 
 ### Our Recommendation: Hybrid Multi-Oracle Architecture
 
-#### Primary Oracle Configuration
-```
-Tier 1 (Institutional Grade):
-- Chainlink: Treasury yields, forex rates
-- API3: First-party money market rates  
-- Chronicle: Crypto collateral (if applicable)
+#### How We Help You Select Oracle Providers
+**Key Evaluation Criteria:**
+- **Track Record**: Years operating, value secured, incident history
+- **Data Quality**: Direct source vs aggregated, update frequency
+- **Asset Coverage**: Treasuries, money markets, repos, commercial paper
+- **Architecture**: Decentralized nodes, redundancy, failover mechanisms
+- **Cost Structure**: Subscription vs per-query, scalability with AUM
+- **Compliance**: Meets regulatory requirements for price discovery
 
-Tier 2 (Validation Layer):
-- Cross-oracle validation (2% deviation threshold)
-- Off-chain reference checks (Bloomberg/Reuters)
-- Proof of Reserves integration
+#### Our Recommended Architecture
 ```
+Multi-Oracle Strategy:
+- Oracle 1: Primary price feed (highest reliability)
+- Oracle 2: Secondary validation (different methodology)
+- Oracle 3: Tertiary verification (independent source)
+
+Validation Layer:
+- Cross-oracle consensus (2% deviation threshold)
+- Sanity checks against reference prices
+- Proof of Reserves integration for underlying assets
+```
+
+#### Oracle Providers to Consider
+- **Chainlink**: Market leader, $20B+ secured, institutional partnerships
+- **Pyth Network**: Sub-second updates from major trading firms
+- **Bloomberg/Refinitiv**: Traditional finance data integration
+- **Band Protocol**: Cost-effective alternative with broad coverage
 
 #### Why This Architecture Wins
-1. **No Single Point of Failure**: Requires 2/3 oracle consensus
-2. **Manipulation Resistance**: Flash loan attacks can't affect multiple oracles
-3. **Regulatory Defensible**: Can demonstrate robust price discovery to SEC
-4. **Cost Optimized**: Tiered approach balances security with expense
+1. **No Single Point of Failure**: Multiple independent data sources
+2. **Manipulation Resistance**: Requires compromising multiple oracles simultaneously
+3. **Regulatory Defensible**: Demonstrates robust price discovery to SEC
+4. **Provider Flexibility**: Can swap oracles without architecture changes
+5. **Cost Optimized**: Mix premium and cost-effective providers
 
 ---
 
@@ -103,7 +119,7 @@ Tier 2 (Validation Layer):
 
 #### Monitors & Relayers Setup ($25,000)
 - Deploy and configure monitoring infrastructure
-- Establish webhook integrations
+- Configure script trigger integrations
 - Configure automated responses
 - Set up alerting channels
 

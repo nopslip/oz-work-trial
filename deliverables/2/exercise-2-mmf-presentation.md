@@ -29,19 +29,27 @@ Powered by OpenZeppelin's Enterprise Solutions
 ## 3. Oracle Architecture Solution
 **Multi-Oracle Strategy with Cross-Validation**
 
-### Primary Oracle Layer
-• **Chainlink** - Treasury yields, forex rates (proven institutional grade)
-• **API3** - First-party oracle for money market rates
-• **Chronicle** - MakerDAO's oracle for crypto collateral prices
+### How to Evaluate Oracle Providers
+**Key Criteria We Recommend:**
+• **Track Record** - How long operating? Value secured? Major incidents?
+• **Data Sources** - First-party vs aggregated? Number of data providers?
+• **Update Frequency** - Real-time? Daily? Matches your NAV calculation needs?
+• **Asset Coverage** - Treasuries? Money markets? Forex? Corporate bonds?
+• **Decentralization** - Single point of failure or distributed nodes?
+• **Cost Structure** - Subscription? Per-query? Sustainable for your AUM?
 
-### Validation Layer (via Monitor)
-• Cross-check oracles against each other (>2% deviation = alert)
-• Compare with off-chain sources (Bloomberg, Reuters)
-• Circuit breaker: Auto-pause if oracles disagree
+### Our Recommended Architecture
+• **Oracle 1** - Primary price feed (highest reliability)
+• **Oracle 2** - Secondary validation (different methodology)
+• **Oracle 3** - Tertiary check (alternative data source)
+• **Cross-Validation** - All must agree within 2% threshold
+• **Circuit Breaker** - Auto-pause if oracles disagree
 
-### Proof of Reserves
-• Chainlink PoR for Treasury backing verification
-• Real-time attestation of underlying assets
+### Example Providers to Consider
+• **Chainlink** - Market leader, 70% DeFi market share, institutional partnerships
+• **Pyth Network** - Institutional focus, sub-second updates from Jump Crypto
+• **Bloomberg Oracle** - Traditional finance data via established provider
+• **Band Protocol** - Cost-effective alternative with broad coverage
 
 ---
 
@@ -98,14 +106,14 @@ Powered by OpenZeppelin's Enterprise Solutions
 │  • Connects to RPC endpoint                          │
 │  • Watches blockchain events                         │  
 │  • Deviation detection                               │
-│  • Triggers alerts & webhooks                        │
+│  • Triggers alerts & scripts                         │
 └──────────────────────┬───────────────────────────────┘
                        │
-                  (webhook)
+              (script trigger)
                        │
 ┌──────────────────────▼───────────────────────────────┐
 │                    RELAYER                            │
-│  • Receives webhooks from Monitor                    │
+│  • Receives script triggers from Monitor             │
 │  • Executes transactions on blockchain               │
 │  • NAV updates, redemption processing               │
 │  • Emergency pausing                                 │
@@ -204,15 +212,15 @@ Powered by OpenZeppelin's Enterprise Solutions
 ### Our Multi-Oracle Approach
 ```solidity
 function calculateNAV() external view returns (uint256) {
-    uint256 chainlinkPrice = getChainlinkPrice();
-    uint256 api3Price = getAPI3Price();
-    uint256 chroniclePrice = getChroniclePrice();
+    uint256 oracle1Price = getPrimaryOracle();
+    uint256 oracle2Price = getSecondaryOracle();
+    uint256 oracle3Price = getTertiaryOracle();
     
     // Require at least 2 of 3 oracles agree within 2%
-    require(isPriceValid(chainlinkPrice, api3Price, chroniclePrice), 
+    require(isPriceValid(oracle1Price, oracle2Price, oracle3Price), 
             "Oracle disagreement");
     
-    return weightedAverage(chainlinkPrice, api3Price, chroniclePrice);
+    return weightedAverage(oracle1Price, oracle2Price, oracle3Price);
 }
 ```
 

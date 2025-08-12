@@ -4,10 +4,10 @@
 
 ```mermaid
 graph TB
-    CL[Chainlink<br/>Treasury Yields]
-    API[API3<br/>Money Market Rates]
-    CHR[Chronicle<br/>Crypto Prices]
-    POR[Proof of Reserves<br/>Attestation]
+    O1[Oracle 1<br/>Primary Price Feed<br/>Treasury & Money Market]
+    O2[Oracle 2<br/>Secondary Validation<br/>Different Methodology]
+    O3[Oracle 3<br/>Tertiary Check<br/>Independent Source]
+    POR[Proof of Reserves<br/>Asset Attestation]
     
     OA[Oracle Aggregator Contract<br/>• Multi-oracle consensus<br/>• 15% deviation threshold<br/>• TWAP calculation]
     
@@ -20,9 +20,9 @@ graph TB
     REL[OpenZeppelin Relayer<br/>• Webhook Receipt<br/>• Transaction Execution<br/>• Key Management]
     KMS[AWS KMS/HSM<br/>Secure Key Storage]
     
-    CL --> OA
-    API --> OA
-    CHR --> OA
+    O1 --> OA
+    O2 --> OA
+    O3 --> OA
     POR --> OA
     
     OA --> MMF
@@ -30,7 +30,7 @@ graph TB
     
     MMF -.->|Events| RPC
     RPC -->|Block Data| MON
-    MON -->|Webhook| REL
+    MON -->|Script Trigger| REL
     REL -->|Transactions| MMF
     REL --> KMS
     
@@ -41,9 +41,9 @@ graph TB
 ```mermaid
 sequenceDiagram
     participant Attacker
-    participant Oracle1 as Chainlink
-    participant Oracle2 as API3
-    participant Oracle3 as Chronicle
+    participant Oracle1 as Oracle 1 (Primary)
+    participant Oracle2 as Oracle 2 (Secondary)
+    participant Oracle3 as Oracle 3 (Tertiary)
     participant OA as Oracle Aggregator
     participant MON as Monitor
     participant REL as Relayer
@@ -59,7 +59,7 @@ sequenceDiagram
     OA-->>MON: Emit PriceAnomalyEvent
     
     MON->>MON: Detect anomaly in <30s
-    MON->>REL: Trigger emergency pause webhook
+    MON->>REL: Execute script trigger
     REL->>MMF: Execute pause()
     MMF->>MMF: Contract paused ✅
     
@@ -82,7 +82,7 @@ flowchart LR
     R3[Switch Oracle]
     R4[Delay Operations]
     
-    N1[Webhook to Relayer]
+    N1[Script Trigger to Relayer]
     N2[Email Compliance]
     N3[PagerDuty Ops]
     N4[Slack Alert]
