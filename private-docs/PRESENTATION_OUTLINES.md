@@ -1,12 +1,14 @@
-# Presentation Outlines for OpenZeppelin Work Trial
+# Presentation Outline - OpenZeppelin Work Trial
 
-## Exercise 1: Tokenized Bond Platform (10-15 minutes)
+## PRIMARY FOCUS: Exercise 1 - Tokenized Bond Platform (80% of presentation)
+
+### Core Demo: Monitor-Relayer Integration for Operational Security
 
 ### Slide 1: Title & Introduction (30 seconds)
-**Acme Bank Tokenized Bond Platform**
-- Operational Security with OpenZeppelin Monitor & Relayer
-- Solution Architect: [Your Name]
-- "How we automate institutional-grade security for on-chain bonds"
+**Acme Bank Crypto Bond Platform**
+- Real-Time Operational Security with OpenZeppelin OSS Tooling
+- Demonstrating Monitor → Relayer Integration
+- "How financial institutions achieve 24/7 automated operations"
 
 ### Slide 2: The Innovation (1 minute)
 **Crypto-Funded Bond: A Novel Approach**
@@ -33,43 +35,44 @@ Events → Monitor → Webhook → Relayer → Action
 - Together: Enterprise automation without manual operations
 
 ### Slide 5: Live Demo Setup (30 seconds)
-**What You'll See**
-- Contract deployed on Sepolia: 0xE8bc7ff409dD6DceA77b3A948AF2c6a18E97327f
-- Monitor configuration with 5 key risk scenarios
-- Relayer ready for automated responses
-- Real-time dashboard
+**What You'll See Today**
+- Contract deployed on Sepolia: 0xB9A538E720f7C05a7A4747A484C231c956920bef
+- Monitor configured for 5 operational risk scenarios
+- Script triggers bridging Monitor to Relayer
+- Relayer plugins ready for automated responses
+- **Architecture**: Monitor → Script → Relayer → On-chain Action
 
-### Slide 6: Demo - Interest Payment Automation (2 minutes)
-**LIVE: Push Model Interest Distribution**
-- Trigger: Monthly timer (1st of month, 9 AM)
-- Monitor detects payment due
-- Webhook triggers Relayer
-- Relayer executes distribution to all holders
-- "This replaces an entire operations team"
+### Slide 6: Demo Scenario 1 - Missed Interest Payment (2 minutes)
+**REQUIRED: Operational Risk Detection**
+- Scenario: Monthly interest payment overdue
+- Monitor detects: No InterestPaid event when expected
+- Relayer response: Alert operations team immediately
+- **Value**: "Never miss a payment to institutional investors"
+- Business impact: SLA compliance, maintain trust
 
-### Slide 7: Demo - Risk Detection (1.5 minutes)
-**LIVE: Large Transfer Monitoring**
-- Attempt transfer exceeding threshold
-- Monitor detects large transfer event
-- Risk assessment triggered
-- Risk team notified
-- "Proactive risk management"
+### Slide 7: Demo Scenario 2 - Large Transfer Detection (2 minutes)
+**REQUIRED: Unauthorized Transfer Response**
+- Scenario: $50M transfer to unknown address
+- Monitor detects: LargeTransfer event (>$10M threshold)
+- Relayer response: Emergency pause contract in <2 seconds
+- **Value**: "Damage control - prevent the NEXT $50M transfer"
+- Business impact: Limit losses, maintain control
 
-### Slide 8: Demo - Risk Detection (1.5 minutes)
-**LIVE: Concentration Risk Management**
-- Large transfer attempts to exceed 20% ownership
-- Monitor calculates holder percentage
-- Additional purchases blocked
-- Risk team alerted
-- "Proactive risk management, not reactive"
+### Slide 8: Demo Scenario 3 - Regulatory Thresholds (2 minutes)
+**REQUIRED: Concentration Risk Management**
+- Scenario: Entity exceeds 20% ownership limit
+- Monitor detects: ConcentrationRisk event (21% ownership)
+- Relayer response: Block further purchases, alert compliance
+- **Value**: "Automatic SEC compliance, avoid penalties"
+- Business impact: Regulatory adherence, risk management
 
-### Slide 9: Demo - Emergency Response (1.5 minutes)
-**LIVE: Market Volatility Circuit Breaker**
-- Simulate 30% crypto crash
-- Monitor detects volatility threshold
-- Relayer pauses trading
-- Crypto purchases halted
-- "Seconds to respond, not hours"
+### Slide 9: Creative Scenario - OFAC Sanctions (2 minutes)
+**BEYOND REQUIREMENTS: Proactive Compliance**
+- Scenario: Recipient added to OFAC list yesterday
+- Monitor detects: Interest distribution starting
+- Relayer response: Screen recipients, block sanctioned addresses
+- **Value**: "Zero tolerance for sanctions violations"
+- Shows independent thinking about real bank concerns
 
 ### Slide 10: Value Delivered (1 minute)
 **Why OpenZeppelin OSS Tooling Wins**
@@ -101,7 +104,7 @@ Events → Monitor → Webhook → Relayer → Action
 
 ---
 
-## Exercise 2: Money Market Fund Solution (10-15 minutes)
+## Exercise 2: Money Market Fund Solution (20% - Brief Overview)
 
 ### Slide 1: Title & Introduction (30 seconds)
 **Tokenized Money Market Fund Architecture**
@@ -221,25 +224,24 @@ Band → $1.0003 (10%)
 
 ---
 
-## Combined Presentation Flow (30-45 minutes total)
+## Actual Presentation Flow
 
 ### Opening (2 minutes)
-- Introduction and agenda
-- OpenZeppelin value proposition
-- Why operational security matters
+- Introduction and work trial context
+- OpenZeppelin OSS Tooling value proposition
+- Focus: Operational security for tokenized bonds
 
-### Exercise 1: Tokenized Bond (15 minutes)
-- Full demo with live contract interaction
-- Focus on Monitor-Relayer synergy
-- Emphasize automation value
+### Exercise 1: Tokenized Bond (20-25 minutes)
+- WORKING DEMO: Pause/Unpause automation
+- Show Monitor detecting events
+- Show Relayer executing responses
+- Explain integration architecture
+- Discuss extensibility to other scenarios
+- Emphasize: "This is running NOW"
 
-### Transition (1 minute)
-- "Now let's look at our MMF solution..."
-- "Different challenge, same tools"
-
-### Exercise 2: MMF Architecture (15 minutes)
-- Oracle selection deep dive
-- Architecture walkthrough
+### Exercise 2: MMF Architecture (5-10 minutes)
+- Quick overview of oracle strategy
+- How Monitor/Relayer apply to MMF
 - Service bundle recommendation
 
 ### Q&A Preparation Topics (10-15 minutes)
@@ -277,11 +279,11 @@ Band → $1.0003 (10%)
 - Don't forget to track time
 
 ### Power Phrases:
-- "Monitor and Relayer solve the fundamental limitation of smart contracts"
-- "This isn't theoretical - it's production-ready today"
-- "We're not just using tools, we're creating operational excellence"
-- "Multi-oracle architecture is our competitive moat"
-- "70% cost reduction with better security"
+- "Monitor and Relayer solve the fundamental limitation of smart contracts - they can't wake themselves up"
+- "This integration is working RIGHT NOW on Sepolia"
+- "2-second automated response vs hours of manual intervention"
+- "The script bridge we built enables ANY monitoring scenario"
+- "Zero licensing cost, enterprise-grade security"
 
 ### If Running Short on Time:
 Priority order:

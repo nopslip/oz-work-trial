@@ -6,7 +6,7 @@ Upgradeable ERC20 token with enterprise features for tokenized bond demonstratio
 
 ## Implementation Status: ✅ DEPLOYED
 
-**Contract Address**: `0xE8bc7ff409dD6DceA77b3A948AF2c6a18E97327f` (Sepolia)
+**Contract Address**: `0xB9A538E720f7C05a7A4747A484C231c956920bef` (Sepolia)
 **Contract File**: `/tokenized-bond/src/AcmeBankCryptoBond.sol`
 
 ## Core Parameters (As Implemented)
