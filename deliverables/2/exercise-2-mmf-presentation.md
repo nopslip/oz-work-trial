@@ -13,64 +13,69 @@ Powered by OpenZeppelin's Enterprise Solutions
 
 ---
 
-## 2. Your MMF Requirements
-**What AcmeBank Needs for Your Tokenized Money Market Fund**
+## 2. AcmeBank's MMF Security Challenge
+**Building a Tokenized Money Market Fund Requires More Than Smart Contracts**
 
-• **Daily NAV Calculations** - You need real-time, accurate pricing for diverse assets
-• **Oracle Reliability** - Wrong price = wrong NAV = regulatory violation for you
-• **24/7 Redemptions** - Your clients expect instant liquidity, not T+1 settlement
-• **Regulatory Compliance** - You must meet SEC Rule 2a-7, liquidity requirements, asset quality
-• **Proof of Reserves** - Your auditors require verification that backing assets match NAV
+• **Complex Architecture** - Oracles, smart contracts, infrastructure, operations
+• **Regulatory Requirements** - SEC Rule 2a-7, daily NAV, liquidity management
+• **24/7 Operations** - No market close, instant redemptions, continuous monitoring
+• **Multiple Attack Vectors** - Smart contracts, oracles, keys, infrastructure
+• **No Established Playbook** - Traditional security firms don't understand Web3
 
-**Your Current Concern**: Which oracle provider(s) can you trust with billions in AUM?
-
----
-
-## 3. Oracle Architecture Solution
-**Multi-Oracle Strategy with Cross-Validation**
-
-### How to Evaluate Oracle Providers
-**Key Criteria We Recommend:**
-• **Track Record** - How long operating? Value secured? Major incidents?
-• **Data Sources** - First-party vs aggregated? Number of data providers?
-• **Update Frequency** - Real-time? Daily? Matches your NAV calculation needs?
-• **Asset Coverage** - Treasuries? Money markets? Forex? Corporate bonds?
-• **Decentralization** - Single point of failure or distributed nodes?
-• **Cost Structure** - Subscription? Per-query? Sustainable for your AUM?
-
-### Our Recommended Architecture
-• **Oracle 1** - Primary price feed (highest reliability)
-• **Oracle 2** - Secondary validation (different methodology)
-• **Oracle 3** - Tertiary check (alternative data source)
-• **Cross-Validation** - All must agree within 2% threshold
-• **Circuit Breaker** - Auto-pause if oracles disagree
-
-### Example Providers to Consider
-• **Chainlink** - Market leader, 70% DeFi market share, institutional partnerships
-• **Pyth Network** - Institutional focus, sub-second updates from Jump Crypto
-• **Bloomberg Oracle** - Traditional finance data via established provider
-• **Band Protocol** - Cost-effective alternative with broad coverage
+**The Reality**: You need comprehensive security from design through operations
 
 ---
 
-## 4. Our Complete Security Bundle
-**OpenZeppelin Services Tailored for AcmeBank's MMF**
+## 3. OpenZeppelin's Complete MMF Security Solution
+**End-to-End Security Services for Your Tokenized MMF**
 
-### Phase 1: Foundation
-• **Smart Contract Security Audit** - Focus on NAV calculation, redemption logic
-• **Oracle Integration Review** - Validate price feed architecture
-• **Monitor Setup** - Real-time anomaly detection
-• **Relayer Configuration** - Automated NAV updates, redemption processing
+### We Don't Just Audit - We Secure Your Entire Journey
 
-### Phase 2: Operations
-• **Infrastructure Security Assessment** - Oracle endpoints, node security
-• **Operational Security Review** - Key management, upgrade procedures
-• **Incident Response Training** - Oracle failure scenarios, bank run simulations
+**Phase 1: Architecture & Design**
+• Security Advisory & Consulting for your MMF architecture
+• Oracle selection strategy (not just picking, but validating)
+• Key management and access control design
 
-### Phase 3: Maintenance (Ongoing)
-• **Security Advisory** - Regulatory changes, new attack vectors
-• **24/7 Monitoring** - Continuous oracle health, NAV accuracy
-• **Quarterly Reviews** - Performance optimization, threat assessment
+**Phase 2: Development Support**
+• On-call security advisory as you build
+• Best practices guidance
+
+**Phase 3: Security Validation**
+• Smart Contract Security Audit
+• Blockchain Infrastructure Assessment
+• Operational Security Review
+
+**Phase 4: Operational Tools**
+• Monitors (OSS) for 24/7 anomaly detection
+• Relayers (OSS) for automated responses
+
+**Phase 5: Team Readiness**
+• Incident Response Training & Simulations
+• Final operational review
+
+**Phase 6: Production Support**
+• Go-live assistance
+• Ongoing advisory and monitoring
+
+---
+
+## 4. Why Start with Architecture & Design?
+**90% of Security Issues Start with Poor Design Decisions**
+
+### What We Address in Phase 1
+• **Oracle Strategy** - Multi-oracle architecture, validation criteria
+• **Access Control** - Role-based permissions, multi-sig requirements
+• **Key Management** - HSM/KMS architecture, operational procedures
+• **Upgrade Strategy** - How to safely update without compromising security
+• **Compliance Architecture** - Building SEC Rule 2a-7 into the design
+
+### Oracle Selection (One Critical Piece)
+• Evaluation criteria for providers
+• Multi-oracle consensus patterns
+• Cross-validation thresholds
+• Circuit breaker design
+
+**Key Point**: Getting architecture right saves months of rework and audit findings
 
 ---
 
@@ -81,7 +86,7 @@ Powered by OpenZeppelin's Enterprise Solutions
 ┌─────────────────────────────────────────────────────┐
 │                   DATA SOURCES                       │
 ├──────────────┬────────────────┬────────────────────┤
-│  Chainlink   │     API3       │    Chronicle       │
+│   Oracle 1   │   Oracle 2     │    Oracle 3        │
 │  (Treasury)  │ (Money Market) │    (Crypto)        │
 └──────┬───────┴───────┬────────┴──────┬─────────────┘
        │               │               │
@@ -122,82 +127,99 @@ Powered by OpenZeppelin's Enterprise Solutions
 
 ---
 
-## 6. Key Security Concerns
-**MMF-Specific Risks We'll Address for AcmeBank**
+## 6. Real Security Threats We Address
+**$2.3B Lost in 2025 - We Prevent These for AcmeBank**
 
-### 1. Oracle Manipulation
-• **Risk**: Flash loan attack manipulates underlying asset prices
-• **Mitigation**: Time-weighted average prices (TWAP), multi-oracle validation
-• **Monitor Role**: Detects >2% price deviation, triggers circuit breaker
+### Oracle Manipulation (Compound Wargame Case)
+• **Attack**: Manipulated price 28% above market
+• **OpenZeppelin Solution**: Multi-oracle validation designed in Phase 1
+• **Result**: Attack detected in <30 seconds, $700K saved
 
-### 2. Bank Run Scenario
-• **Risk**: Mass redemptions exceed liquid reserves
-• **Mitigation**: Redemption queuing, partial fulfillment, emergency liquidity
-• **Relayer Role**: Implements fair queuing, processes in order
+### Smart Contract Vulnerabilities  
+• **Attack**: Flash loans, reentrancy, logic flaws
+• **OpenZeppelin Solution**: Phase 3 comprehensive audit
+• **Result**: Vulnerabilities found before deployment
 
-### 3. Negative Interest Rates
-• **Risk**: European treasuries go negative, breaking MMF assumptions
-• **Mitigation**: Floor at 0%, special handling for negative yields
-• **Smart Contract**: Built-in guards against negative NAV
+### Private Key Compromise
+• **Attack**: ByBit lost $1.5B to stolen keys
+• **OpenZeppelin Solution**: HSM/KMS architecture (Phase 1 design)
+• **Result**: Keys physically cannot be stolen
 
-### 4. Stablecoin Depeg
-• **Risk**: USDC/USDT backing loses peg, affecting NAV
-• **Mitigation**: Real-time peg monitoring, automatic rebalancing
-• **Monitor + Relayer**: Detect depeg > 0.5%, pause deposits, rebalance
+### Infrastructure Attacks
+• **Attack**: RPC manipulation, node compromise
+• **OpenZeppelin Solution**: Phase 3 infrastructure assessment
+• **Result**: Hardened infrastructure, redundant systems
 
 ---
 
-## 7. Live Monitoring Dashboard
-**What AcmeBank's Operations Team Will See**
+## 7. OpenZeppelin's OSS Tools (Phase 4)
+**Free, Open-Source Tools That Power Your Operations**
 
-### Real-Time Metrics (via Monitor)
-• Current NAV: $1.0001 (updates every block)
-• Oracle Health: ✅ All 3 responding
-• Price Deviation: 0.15% (within threshold)
-• Redemption Queue: 12 pending ($1.2M)
-• Liquidity Buffer: 15% (target: 10%)
+### Monitor - Your 24/7 Security Guard
+• **What It Does**: Watches blockchain for anomalies
+• **MMF Use Cases**: 
+  - Oracle price deviations
+  - Large redemptions
+  - NAV irregularities
+  - Gas spike detection
+• **Value**: Replaces manual monitoring team
 
-### Automated Alerts
-• Oracle disagreement > 2%
-• Redemption spike > 10x average
-• NAV deviation > $0.9995
-• Gas price spike affecting operations
-• Regulatory threshold breaches
+### Relayer - Your Automated Executor
+• **What It Does**: Executes transactions based on Monitor triggers
+• **MMF Use Cases**:
+  - Daily NAV updates
+  - Interest distributions
+  - Emergency pausing
+  - Rebalancing operations
+• **Value**: No human errors, instant response
+
+### Integration via Script Triggers
+• Monitor detects event → Script trigger → Relayer executes
+• Response time: <2 seconds
+• Completely automated, 24/7/365
 
 ---
 
 ## 8. Implementation Roadmap
-**Phased Production Deployment**
+**OpenZeppelin Services Engagement Timeline**
 
-### Phase 1: Foundation
-• Deploy MMF smart contracts to testnet
-• Integrate primary oracles (Chainlink, API3)
-• Basic Monitor configuration
+### Phase 1: Architecture & Design
+• **Security Advisory & Consulting** - Strategic MMF architecture review
+• **Security Advisory & Consulting** - Oracle selection strategy
+• **Security Advisory & Consulting** - Key management architecture (HSM/KMS)
+• **Security Advisory & Consulting** - Access control and role design
+• **Deliverable**: Complete security architecture and requirements
 
-### Phase 2: Oracle Hardening
-• Add redundant oracles
-• Implement cross-validation logic
-• Proof of Reserves integration
+### Phase 2: Development (AcmeBank builds with OZ advisory)
+• **Security Advisory & Consulting** - On-call for security questions
+• **AcmeBank Development** - Your team builds the MMF contracts
+• **AcmeBank Testing** - Your team develops test coverage
+• **Deliverable**: Complete codebase ready for audit
 
-### Phase 3: Automation Layer
-• Configure Relayer for NAV updates
-• Automated redemption processing
-• Rebalancing mechanisms
+### Phase 3: Security Validation
+• **Smart Contract Security Audit** - Comprehensive vulnerability assessment
+• **Blockchain Infrastructure Security Assessment** - Node, RPC, bridge security
+• **Operational Security Review** - Key management, deployment, governance
+• **Deliverable**: Audit reports with remediation complete
 
-### Phase 4: Security Review
-• Smart contract audit
-• Oracle architecture assessment
-• Penetration testing
+### Phase 4: OSS Tooling Deployment
+• **Monitors (OSS)** - Deploy real-time anomaly detection
+• **Relayers (OSS)** - Configure automated transaction execution
+• **Integration** - Connect Monitor to Relayer via script triggers
+• **Deliverable**: Operational monitoring and automation stack
 
 ### Phase 5: Operational Readiness
-• Incident response training
-• Runbook creation
-• Team training on Monitor/Relayer
+• **Incident Response Training & Simulations** - Oracle failures, bank runs
+• **Incident Response Training & Simulations** - Develop response procedures
+• **Operational Security Review** - Final pre-launch assessment
+• **Deliverable**: Trained team with tested procedures
 
-### Phase 6: Production Launch
-• Mainnet deployment
-• Limited launch with caps
-• 24/7 monitoring activation
+### Phase 6: Production & Support
+• **Security Advisory & Consulting** - Go-live support
+• **Monitors & Relayers** - 24/7 operational coverage
+• **Security Advisory & Consulting** - Quarterly reviews
+• **Smart Contract Security Audit** - Annual re-audit
+• **Deliverable**: Secure, monitored production MMF
 
 ---
 
@@ -363,9 +385,9 @@ solutions@openzeppelin.com
 contract MMFOracle {
     using SafeMath for uint256;
     
-    IChainlink public chainlink;
-    IAPI3 public api3;
-    IChronicle public chronicle;
+    IOracle public oracle1;
+    IOracle public oracle2;  
+    IOracle public oracle3;
     
     uint256 constant DEVIATION_THRESHOLD = 200; // 2%
     

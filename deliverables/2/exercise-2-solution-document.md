@@ -12,7 +12,7 @@ This document presents OpenZeppelin's comprehensive security solution for your t
 2. Complete security service bundle
 3. Detailed implementation roadmap
 4. Risk mitigation strategies
-5. Cost-benefit analysis
+5. Value analysis
 
 ---
 
@@ -29,7 +29,7 @@ Your institution faces a critical decision: which oracle provider(s) can be trus
 - **Data Quality**: Direct source vs aggregated, update frequency
 - **Asset Coverage**: Treasuries, money markets, repos, commercial paper
 - **Architecture**: Decentralized nodes, redundancy, failover mechanisms
-- **Cost Structure**: Subscription vs per-query, scalability with AUM
+- **Pricing Model**: Subscription vs per-query, scalability with AUM
 - **Compliance**: Meets regulatory requirements for price discovery
 
 #### Our Recommended Architecture
@@ -47,16 +47,16 @@ Validation Layer:
 
 #### Oracle Providers to Consider
 - **Chainlink**: Market leader, $20B+ secured, institutional partnerships
-- **Pyth Network**: Sub-second updates from major trading firms
-- **Bloomberg/Refinitiv**: Traditional finance data integration
-- **Band Protocol**: Cost-effective alternative with broad coverage
+- **Pyth Network**: Sub-second updates from major trading firms  
+- **Redstone**: Modular oracle supporting traditional finance assets
+- **Band Protocol**: Alternative oracle with broad coverage
 
 #### Why This Architecture Wins
 1. **No Single Point of Failure**: Multiple independent data sources
 2. **Manipulation Resistance**: Requires compromising multiple oracles simultaneously
 3. **Regulatory Defensible**: Demonstrates robust price discovery to SEC
 4. **Provider Flexibility**: Can swap oracles without architecture changes
-5. **Cost Optimized**: Mix premium and cost-effective providers
+5. **Flexibility**: Mix premium and comprehensive providers
 
 ---
 
@@ -105,19 +105,19 @@ Validation Layer:
 
 ### Phase 1: Foundation
 
-#### Smart Contract Security Audit ($75,000)
+#### Smart Contract Security Audit
 - Comprehensive review of MMF token contract
 - Oracle integration security assessment
 - Compliance mechanism validation
 - Gas optimization analysis
 
-#### Security Advisory & Consulting ($25,000)
+#### Security Advisory & Consulting
 - Oracle architecture design review
 - Regulatory compliance mapping
 - Integration planning with existing systems
 - Best practices implementation
 
-#### Monitors & Relayers Setup ($25,000)
+#### Monitors & Relayers Setup
 - Deploy and configure monitoring infrastructure
 - Configure script trigger integrations
 - Configure automated responses
@@ -125,42 +125,37 @@ Validation Layer:
 
 ### Phase 2: Hardening
 
-#### Blockchain Infrastructure Security Assessment ($35,000)
+#### Blockchain Infrastructure Security Assessment
 - RPC endpoint security review
 - Node infrastructure hardening
 - Network topology optimization
 - DDoS protection implementation
 
-#### Operational Security Review ($25,000)
+#### Operational Security Review
 - Key management procedures
 - Upgrade governance processes
 - Access control audit
 - Incident response procedures
 
-#### Incident Response Training & Simulations ($25,000)
+#### Incident Response Training & Simulations
 - Oracle failure scenarios
 - Bank run simulations
 - Hack attempt responses
 - Regulatory intervention procedures
 
-### Phase 3: Ongoing Support (Annual) - $120,000
+### Phase 3: Ongoing Support (Annual)
 
-#### Quarterly Security Reviews ($60,000/year)
+#### Quarterly Security Reviews
 - Threat landscape updates
 - Performance optimization
 - Regulatory change assessment
 - New feature security reviews
 
-#### 24/7 Security Advisory ($60,000/year)
+#### 24/7 Security Advisory
 - On-call security experts
 - Rapid incident response
 - Continuous monitoring oversight
 - Monthly security reports
-
-### Total Investment
-- Initial Setup (Phases 1-2): $210,000
-- Annual Maintenance: $120,000
-- Oracle Feed Costs: ~$60,000/year
 
 ---
 
@@ -178,45 +173,81 @@ External Data → Oracle Aggregator → MMF Contracts → Monitor/Relayer
 
 1. **Oracle to Contract**: Real-time price feeds with validation
 2. **Contract to Monitor**: Event emission for anomaly detection
-3. **Monitor to Relayer**: Webhook triggers for automated responses
+3. **Monitor to Relayer**: Script triggers for automated responses
 4. **Relayer to Contract**: Execution of administrative functions
 
 ---
 
 ## 5. Implementation Roadmap
 
-### Phase 1: Foundation
-**Architecture Setup**
-- Deploy MMF contracts to testnet
-- Configure primary oracles
-- Establish monitoring baseline
+### Phase 1: Architecture & Design
+**Security Advisory & Consulting**
+- Strategic MMF architecture review
+- Oracle selection strategy and criteria
+- Key management architecture (HSM/KMS)
+- Access control and role design
 
-**Integration Testing**
-- Oracle consensus validation
-- NAV calculation verification
-- Redemption flow testing
+**Deliverables**
+- Complete security architecture
+- Oracle evaluation framework
+- Security requirements document
 
-### Phase 2: Security Hardening
-**Security Audit**
-- Contract vulnerability assessment
-- Oracle manipulation testing
-- Gas optimization
+### Phase 2: Development
+**AcmeBank Builds with OZ Support**
+- Security Advisory & Consulting (on-call)
+- AcmeBank develops MMF contracts
+- AcmeBank creates test coverage
 
-**Operational Readiness**
-- Team training
-- Runbook creation
-- Simulation exercises
+**Deliverables**
+- Complete codebase
+- Test suite
+- Ready for audit
 
-### Phase 3: Production Launch
-**Mainnet Deployment**
-- Contract deployment with limits
-- Oracle activation
-- Monitor/Relayer go-live
+### Phase 3: Security Validation
+**Comprehensive Assessment**
+- Smart Contract Security Audit
+- Blockchain Infrastructure Security Assessment
+- Operational Security Review
 
-**Scaling**
-- Remove initial limits
-- Full automation activation
-- Performance optimization
+**Deliverables**
+- Audit reports
+- Remediation complete
+- Security attestation
+
+### Phase 4: OSS Tooling
+**Monitor & Relayer Deployment**
+- Monitors (OSS) configuration
+- Relayers (OSS) setup
+- Script trigger integration
+
+**Deliverables**
+- Operational monitoring
+- Automated responses
+- Tested integration
+
+### Phase 5: Operational Readiness
+**Training & Preparation**
+- Incident Response Training & Simulations
+- Oracle failure scenarios
+- Bank run simulations
+- Final Operational Security Review
+
+**Deliverables**
+- Trained team
+- Response procedures
+- Launch readiness
+
+### Phase 6: Production & Support
+**Go-Live & Ongoing**
+- Security Advisory & Consulting (go-live support)
+- Monitors & Relayers (24/7 operation)
+- Security Advisory & Consulting (quarterly reviews)
+- Smart Contract Security Audit (annual)
+
+**Deliverables**
+- Live platform
+- Continuous monitoring
+- Ongoing security posture
 
 ---
 
@@ -243,7 +274,7 @@ External Data → Oracle Aggregator → MMF Contracts → Monitor/Relayer
 ## 7. Expected Outcomes
 
 ### Quantifiable Benefits
-- **Operational Cost Reduction**: 40% vs traditional MMF operations
+- **Operational Efficiency**: Improved vs traditional MMF operations
 - **Settlement Speed**: T+0 vs T+1 traditional
 - **Uptime**: 99.95% availability target
 - **NAV Accuracy**: ±0.01% precision
@@ -276,7 +307,7 @@ External Data → Oracle Aggregator → MMF Contracts → Monitor/Relayer
 - No vendor lock-in
 - Complete transparency
 - Community-driven improvements
-- Cost-effective scaling
+- Scalable architecture
 
 ---
 
@@ -290,7 +321,7 @@ External Data → Oracle Aggregator → MMF Contracts → Monitor/Relayer
 
 ### Business KPIs
 - AUM growth: 50% Year 1
-- Operational costs: -40% vs traditional
+- Operational efficiency: Better than traditional
 - Regulatory compliance: 100% adherence
 - Security incidents: Zero tolerance
 
@@ -302,7 +333,7 @@ OpenZeppelin's comprehensive service bundle addresses your oracle selection chal
 
 1. **Proven Technology**: Battle-tested tools securing billions
 2. **Regulatory Alignment**: Built for institutional compliance
-3. **Cost Efficiency**: Open-source base with professional support
+3. **Value**: Open-source base with professional support
 4. **Risk Mitigation**: Multiple layers of security
 5. **Operational Excellence**: 24/7 automated operations
 
